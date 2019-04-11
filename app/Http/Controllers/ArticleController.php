@@ -53,5 +53,22 @@ class ArticleController
 
         return response()->json([]);
     }
+    /**
+     * update article
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function savelikes(Request $request)
+    {
+        Validator::make($request->all(), ['id' => 'required:id', 'likes' => 'required'])->validate();
+
+        Article::where('id', $request->id)
+            ->update([
+                'likes' => $request->get('likes')
+                ]);
+
+
+        return response()->json([]);
+    }
 
 }

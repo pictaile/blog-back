@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/save', function (Request $request) {
 });
 
 Route::get('articles/{id?}', 'ArticleController@getArticles');
-Route::post('articles/{id}', 'ArticleController@save');
-Route::get('auth', 'APILoginController@login');
+Route::middleware('auth:api')->post('articles/{id}', 'ArticleController@save');
+Route::middleware('auth:api')->post('likes/{id?}', 'ArticleController@saveLikes');
+
